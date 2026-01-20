@@ -39,7 +39,6 @@ public class PracticalTest02v5MainActivity extends AppCompatActivity {
 
         resultTextView = findViewById(R.id.result_text_view);
 
-        // Buton Start Server
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +53,6 @@ public class PracticalTest02v5MainActivity extends AppCompatActivity {
             }
         });
 
-        // Buton Execute Client
         executeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
