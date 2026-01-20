@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView android:text="SERVER" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText android:id="@+id/server_port" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:hint="Port" android:text="5000" android:inputType="number"/>
+        <Button android:id="@+id/connect_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Start"/>
+    </LinearLayout>
+
+    <TextView android:layout_marginTop="20dp" android:text="CLIENT" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText android:id="@+id/client_address" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:hint="Addr" android:text="localhost"/>
+        <EditText android:id="@+id/client_port" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:hint="Port" android:text="5000" android:inputType="number"/>
+    </LinearLayout>
+
+    <EditText android:id="@+id/input1_edit_text" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Input 1"/>
+    <EditText android:id="@+id/input2_edit_text" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Input 2"/>
+    <EditText android:id="@+id/input3_edit_text" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Input 3"/>
+
+    <Button android:id="@+id/action_button" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Execute Request"/>
+<!--    <Button-->
+<!--        android:id="@+id/btn_open_map"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Open Map"-->
+<!--        android:backgroundTint="#FF5722"-->
+<!--        android:layout_marginTop="20dp"/>-->
+
+    <TextView android:id="@+id/result_text_view" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:textSize="20sp" android:text="Result..."/>
+
+</LinearLayout>
