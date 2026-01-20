@@ -9,28 +9,27 @@ import java.util.HashMap;
 public class ServerThread extends Thread {
     private ServerSocket serverSocket;
 
-    // --- CLASA INTERNA PENTRU A TINE VALOAREA + TIMPUL ---
-    public static class DataModel {
+    public static class Information {
         public String value;
         public long timestamp;
 
-        public DataModel(String value, long timestamp) {
+        public Information(String value, long timestamp) {
             this.value = value;
             this.timestamp = timestamp;
         }
     }
 
-    // HashMap-ul tine acum DataModel, nu String simplu
-    private HashMap<String, DataModel> data = new HashMap<>();
+    private HashMap<String, Information> data = new HashMap<>();
 
     public ServerThread(int port) {
         try {
             this.serverSocket = new ServerSocket(port);
         } catch (IOException ioException) {
-            Log.e("PracticalTest02", "An exception has occurred: " + ioException.getMessage());
+            Log.e("PracticalTest02", "Error: " + ioException.getMessage());
         }
     }
 
+    @Override
     public void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
@@ -39,30 +38,24 @@ public class ServerThread extends Thread {
                 communicationThread.start();
             }
         } catch (IOException ioException) {
-            Log.e("PracticalTest02", "An exception has occurred: " + ioException.getMessage());
+            Log.e("PracticalTest02", "Error: " + ioException.getMessage());
         }
     }
 
-    // --- METODELE SINCRONIZATE PENTRU PUT SI GET ---
-
-    // Adauga un parametru "timestamp"
-    public synchronized void setData(String key, String value, long timestamp) {
-        DataModel info = new DataModel(value, timestamp);
+    public synchronized void setData(String key, String value) {
+        long currentTime = System.currentTimeMillis();
+        Information info = new Information(value, currentTime);
         this.data.put(key, info);
     }
 
-    public synchronized DataModel getData(String key) {
+    public synchronized Information getData(String key) {
         return this.data.get(key);
     }
 
     public void stopThread() {
         interrupt();
         if (serverSocket != null) {
-            try {
-                serverSocket.close();
-            } catch (IOException ioException) {
-                Log.e("PracticalTest02", "An exception has occurred: " + ioException.getMessage());
-            }
+            try { serverSocket.close(); } catch (IOException e) {}
         }
     }
 }
